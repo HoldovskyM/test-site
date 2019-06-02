@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Example page</title>
+    <style>
+
+        body {
+            background-image: url(background.jpg);
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        #butn-popub {
+            top: 80%;
+            position: absolute;
+            left: 10%;
+            padding: 12px 24px;
+            border-radius: 50px 50px 50px 50px;
+            font: 19px Arial, sans-serif;
+            text-decoration: none;
+            background-color: cadetblue;
+            color: #ffffff;
+
+        }
+
+        .slidershow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: black;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 13px;
+            width: 13px;
+            margin: 0 2px;
+            background-color: black;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, dot:hover {
+            background-color: blue;
+        }
+
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        i:hover {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="bg_layer"></div>
+<div style="margin-top: 5%; margin-left: 10%;">
+    <select style="border:none;">
+        <option>Home</option>
+        <option>Shop</option>
+        <option>About us</option>
+        <option>Services</option>
+        <option>Contuct us</option>
+        <option>Get started</option>
+    </select>
+</div>
+<button onclick="showPopub()" id="butn-popub" class="button button-green">Open pop-up</button>
+
+<div id="slider-div"
+     style="display: none;background-color: white; height: 40%; width: 50%; margin: 150px auto; ">
+    <i onclick="closePopub()" id="butn-close">&#10006;</i>
+    <div class="slidershow-container" style="height: 35%; width: 45%;">
+        <div class="mySlides fade">
+            <img src="background.jpg" style="width: 100%;" alt="">
+        </div>
+        <div class="mySlides farde">
+            <img src="background.jpg" style="width: 100%;" alt="">
+        </div>
+        <div class="mySlides farde">
+            <img src="background.jpg" style="width: 100%;" alt="">
+        </div>
+        <a class="prev" onclick="plusSliders(-1)">prev</a>
+        <a class="next" onclick="plusSliders(1)">next</a>
+        <br>
+        <div style="text-align: center;">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function showPopub() {
+        var el = document.getElementById('slider-div');
+        el.style.display = '';
+    }
+    function closePopub() {
+        var el = document.getElementById('slider-div');
+        el.style.display = 'none';
+    }
+
+    var slideIndex = 1;
+    showSliders(slideIndex);
+
+    function plusSliders(n) {
+        showSliders(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSliders(slideIndex += n);
+    }
+
+    function showSliders(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = 'none'
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace('active', '')
+        }
+        slides[slideIndex - 1].style.display = 'block';
+    }
+</script>
+</body>
+</html>
